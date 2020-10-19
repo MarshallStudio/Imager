@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Imager</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="cd_image">Image</string>
+    <string name="cd_button_to_search_images_related_to_given_query">Button to search images related to given query</string>
+    <string name="sorry_message">Sorry, we couldn\'t find what you\'re looking for 😔</string>
+    <string name="server_unreachable">Oops! The server is currently unreachable 😔</string>
+</resources>
