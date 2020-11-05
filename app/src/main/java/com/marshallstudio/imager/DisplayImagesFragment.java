@@ -2,16 +2,15 @@ package com.marshallstudio.imager;
 
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.marshallstudio.imager.databinding.FragmentDisplayImagesBinding;
 
@@ -48,10 +47,16 @@ public class DisplayImagesFragment extends Fragment {
 
     private void setOnClickListeners() {
         mBinding.btnSearch.setOnClickListener(view -> {
-            ViewModel viewModel=new ViewModelProvider(DisplayImagesFragment.this).get(ViewModel.class);
-            viewModel.getImagesData(mBinding.etSearch.getText().toString());
+            ViewModel viewModel = new ViewModelProvider(DisplayImagesFragment.this).get(ViewModel.class);
+            SearchPreferences searchPreferences = SearchPreferences.getSearchPreferences();
+            searchPreferences.setSearchQuery(mBinding.etSearch.getText().toString());
+            viewModel.getImagesData();
             mBinding.viewFlipper.setDisplayedChild(0);
             mBinding.rvImagesDisplay.scrollToPosition(0);
+        });
+
+        mBinding.btnOptions.setOnClickListener(view -> {
+            mBinding.viewFlipper.setDisplayedChild(4);
         });
     }
 

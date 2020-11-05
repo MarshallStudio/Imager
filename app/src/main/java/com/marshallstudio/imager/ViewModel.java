@@ -27,12 +27,11 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
     }
 
     public void getImagesData() {
-        if (liveImagesData.getValue()!=null){
-            return;
-        }
+        SearchPreferences searchPreferences = SearchPreferences.getSearchPreferences();
 
-        ApiInterface apiInterface= RetrofitClient.getRetrofitClient().create(ApiInterface.class);
-        Call<ImageData> call=apiInterface.getImagesData();
+        ApiInterface apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
+
+        Call<ImageData> call = apiInterface.getImagesData(searchPreferences.getSearchParamsMap());
         call.enqueue(new Callback<ImageData>() {
             @Override
             public void onResponse(Call<ImageData> call, Response<ImageData> response) {
@@ -42,33 +41,11 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
 
             @Override
             public void onFailure(Call<ImageData> call, Throwable t) {
-                Log.e("Failed:",t.getLocalizedMessage());
+                Log.e("Failed:", t.getLocalizedMessage());
                 isServerReachable.setValue(false);
             }
         });
     }
-
-    public void getImagesData(String searchQuery) {
-
-
-        ApiInterface apiInterface= RetrofitClient.getRetrofitClient().create(ApiInterface.class);
-        Call<ImageData> call=apiInterface.getImagesData(searchQuery);
-        call.enqueue(new Callback<ImageData>() {
-            @Override
-            public void onResponse(Call<ImageData> call, Response<ImageData> response) {
-                isServerReachable.setValue(true);
-                liveImagesData.setValue(Arrays.asList(response.body().getHits()));
-            }
-
-            @Override
-            public void onFailure(Call<ImageData> call, Throwable t) {
-                Log.e("Failed:",t.getLocalizedMessage());
-                isServerReachable.setValue(false);
-            }
-        });
-    }
-
-
 
     public MutableLiveData<List<Hits>> getLiveData(){
         return liveImagesData;

@@ -19,28 +19,49 @@
         android:focusable="true"
         android:focusableInTouchMode="true">
 
-        <EditText
-            android:id="@+id/et_Search"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAccent"
-            android:hint="@android:string/search_go"
-            android:inputType="textFilter"
-            android:maxLength="100"
-            android:textColor="#FFFFFF"
-            android:textColorHint="@color/colorAccent">
-
-        </EditText>
-
-        <ImageButton
-            android:id="@+id/btn_Search"
-            android:layout_width="75dp"
             android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="@color/colorPrimary"
-            app:srcCompat="@android:drawable/ic_menu_search"
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:contentDescription="@string/cd_button_to_search_images_related_to_given_query" />
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/et_Search"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:backgroundTint="@color/colorAccent"
+                android:hint="@android:string/search_go"
+                android:inputType="textFilter"
+                android:maxLength="100"
+                android:textColor="#FFFFFF"
+                android:textColorHint="@color/colorAccent">
+
+            </EditText>
+
+            <ImageButton
+                android:id="@+id/btn_Search"
+                android:layout_width="60dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@color/colorPrimary"
+                android:contentDescription="@string/cd_button_to_search_images_related_to_given_query"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                app:srcCompat="@android:drawable/ic_menu_search" />
+
+            <View
+                android:id="@+id/v_decorLine"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/colorAccent" />
+
+            <ImageButton
+                android:id="@+id/btn_options"
+                android:layout_width="40dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@color/colorPrimary"
+                app:srcCompat="@android:drawable/ic_menu_more" />
+        </LinearLayout>
 
 
     </androidx.cardview.widget.CardView>
@@ -87,6 +108,12 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/server_unreachable" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/f_options"
+            android:name="com.marshallstudio.imager.OptionsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
     </ViewFlipper>
