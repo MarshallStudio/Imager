@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class SearchPreferences {
     private static SearchPreferences searchPreferences;
+    private final String key;
+    private final int per_page;
     private String searchQuery;
     private String order;
     private String category;
@@ -12,8 +14,6 @@ public class SearchPreferences {
     private String orientation;
     private boolean editorsChoice;
     private boolean safeSearch;
-    private String key;
-    private int per_page;
 
     private SearchPreferences() {
         safeSearch = true;

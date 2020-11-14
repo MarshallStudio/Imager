@@ -20,12 +20,12 @@ public class DisplayImagesFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding=FragmentDisplayImagesBinding.inflate(inflater,container,false);
+        mBinding = FragmentDisplayImagesBinding.inflate(inflater, container, false);
 
         setRecyclerViewAdapterAndLayoutManager();
         setImageDataChangeObserver();
         setNetworkErrorListener();
-        getImagesData();
+        getImagesData(false);
 
         setOnClickListeners();
 
@@ -33,11 +33,11 @@ public class DisplayImagesFragment extends Fragment {
     }
 
     private void setNetworkErrorListener() {
-        ViewModel viewModel=new ViewModelProvider(this).get(ViewModel.class);
+        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
         viewModel.getLiveDataIsServerReachable().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean isServerReachable) {
-                if (!isServerReachable){
+                if (!isServerReachable) {
                     mBinding.viewFlipper.setDisplayedChild(3);
                 }
             }
@@ -47,10 +47,9 @@ public class DisplayImagesFragment extends Fragment {
 
     private void setOnClickListeners() {
         mBinding.btnSearch.setOnClickListener(view -> {
-            ViewModel viewModel = new ViewModelProvider(DisplayImagesFragment.this).get(ViewModel.class);
             SearchPreferences searchPreferences = SearchPreferences.getSearchPreferences();
             searchPreferences.setSearchQuery(mBinding.etSearch.getText().toString());
-            viewModel.getImagesData();
+            getImagesData(true);
             mBinding.viewFlipper.setDisplayedChild(0);
             mBinding.rvImagesDisplay.scrollToPosition(0);
         });
@@ -61,33 +60,32 @@ public class DisplayImagesFragment extends Fragment {
     }
 
     private void setImageDataChangeObserver() {
-        ViewModel viewModel=new ViewModelProvider(this).get(ViewModel.class);
+        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
         viewModel.getLiveData().observe(getViewLifecycleOwner(), hits -> {
-            ImageRecyclerViewAdapter adapter= (ImageRecyclerViewAdapter) mBinding.rvImagesDisplay.getAdapter();
+            ImageRecyclerViewAdapter adapter = (ImageRecyclerViewAdapter) mBinding.rvImagesDisplay.getAdapter();
             adapter.updateData(hits);
-
-            if (hits.size()==0){
+            if (mBinding.viewFlipper.getDisplayedChild() == 4) {
+                return;
+            } else if (hits.size() == 0) {
                 mBinding.viewFlipper.setDisplayedChild(2);
-            }
-            else {
+            } else {
                 mBinding.viewFlipper.setDisplayedChild(1);
             }
         });
     }
 
     private void setRecyclerViewAdapterAndLayoutManager() {
-        if (getResources().getConfiguration().orientation== Configuration.ORIENTATION_PORTRAIT){
-            mBinding.rvImagesDisplay.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-        }
-        else{
-            mBinding.rvImagesDisplay.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            mBinding.rvImagesDisplay.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        } else {
+            mBinding.rvImagesDisplay.setLayoutManager(new StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.VERTICAL));
         }
         mBinding.rvImagesDisplay.setAdapter(new ImageRecyclerViewAdapter(getContext()));
     }
 
 
-    public void getImagesData(){
-        ViewModel viewModel=new ViewModelProvider(this).get(ViewModel.class);
-        viewModel.getImagesData();
+    public void getImagesData(boolean isNewSearch) {
+        ViewModel viewModel = new ViewModelProvider(this).get(ViewModel.class);
+        viewModel.getImagesData(isNewSearch);
     }
 }

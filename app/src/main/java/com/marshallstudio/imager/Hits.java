@@ -3,50 +3,39 @@ package com.marshallstudio.imager;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Hits implements Parcelable
-{
+public class Hits implements Parcelable {
+    public static final Creator<Hits> CREATOR = new Creator<Hits>() {
+        @Override
+        public Hits createFromParcel(Parcel in) {
+            return new Hits(in);
+        }
+
+        @Override
+        public Hits[] newArray(int size) {
+            return new Hits[size];
+        }
+    };
     private String webformatHeight;
-
     private String imageWidth;
-
     private String favorites;
-
     private String previewHeight;
-
     private String webformatURL;
-
     private String userImageURL;
-
     private String previewURL;
-
     private String comments;
-
     private String type;
-
     private String imageHeight;
-
     private String tags;
-
     private String previewWidth;
-
     private String downloads;
-
     private String user_id;
-
     private String largeImageURL;
-
     private String pageURL;
-
     private String id;
-
     private String imageSize;
-
     private String webformatWidth;
-
     private String user;
-
     private String views;
-
     private String likes;
 
     protected Hits(Parcel in) {
@@ -74,235 +63,179 @@ public class Hits implements Parcelable
         likes = in.readString();
     }
 
-    public static final Creator<Hits> CREATOR = new Creator<Hits>() {
-        @Override
-        public Hits createFromParcel(Parcel in) {
-            return new Hits(in);
-        }
-
-        @Override
-        public Hits[] newArray(int size) {
-            return new Hits[size];
-        }
-    };
-
-    public String getWebformatHeight ()
-    {
+    public String getWebformatHeight() {
         return webformatHeight;
     }
 
-    public void setWebformatHeight (String webformatHeight)
-    {
+    public void setWebformatHeight(String webformatHeight) {
         this.webformatHeight = webformatHeight;
     }
 
-    public String getImageWidth ()
-    {
+    public String getImageWidth() {
         return imageWidth;
     }
 
-    public void setImageWidth (String imageWidth)
-    {
+    public void setImageWidth(String imageWidth) {
         this.imageWidth = imageWidth;
     }
 
-    public String getFavorites ()
-    {
+    public String getFavorites() {
         return favorites;
     }
 
-    public void setFavorites (String favorites)
-    {
+    public void setFavorites(String favorites) {
         this.favorites = favorites;
     }
 
-    public String getPreviewHeight ()
-    {
+    public String getPreviewHeight() {
         return previewHeight;
     }
 
-    public void setPreviewHeight (String previewHeight)
-    {
+    public void setPreviewHeight(String previewHeight) {
         this.previewHeight = previewHeight;
     }
 
-    public String getWebformatURL ()
-    {
+    public String getWebformatURL() {
         return webformatURL;
     }
 
-    public void setWebformatURL (String webformatURL)
-    {
+    public void setWebformatURL(String webformatURL) {
         this.webformatURL = webformatURL;
     }
 
-    public String getUserImageURL ()
-    {
+    public String getUserImageURL() {
         return userImageURL;
     }
 
-    public void setUserImageURL (String userImageURL)
-    {
+    public void setUserImageURL(String userImageURL) {
         this.userImageURL = userImageURL;
     }
 
-    public String getPreviewURL ()
-    {
+    public String getPreviewURL() {
         return previewURL;
     }
 
-    public void setPreviewURL (String previewURL)
-    {
+    public void setPreviewURL(String previewURL) {
         this.previewURL = previewURL;
     }
 
-    public String getComments ()
-    {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments (String comments)
-    {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
-    public String getType ()
-    {
+    public String getType() {
         return type;
     }
 
-    public void setType (String type)
-    {
+    public void setType(String type) {
         this.type = type;
     }
 
-    public String getImageHeight ()
-    {
+    public String getImageHeight() {
         return imageHeight;
     }
 
-    public void setImageHeight (String imageHeight)
-    {
+    public void setImageHeight(String imageHeight) {
         this.imageHeight = imageHeight;
     }
 
-    public String getTags ()
-    {
+    public String getTags() {
         return tags;
     }
 
-    public void setTags (String tags)
-    {
+    public void setTags(String tags) {
         this.tags = tags;
     }
 
-    public String getPreviewWidth ()
-    {
+    public String getPreviewWidth() {
         return previewWidth;
     }
 
-    public void setPreviewWidth (String previewWidth)
-    {
+    public void setPreviewWidth(String previewWidth) {
         this.previewWidth = previewWidth;
     }
 
-    public String getDownloads ()
-    {
+    public String getDownloads() {
         return downloads;
     }
 
-    public void setDownloads (String downloads)
-    {
+    public void setDownloads(String downloads) {
         this.downloads = downloads;
     }
 
-    public String getUser_id ()
-    {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id (String user_id)
-    {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
-    public String getLargeImageURL ()
-    {
+    public String getLargeImageURL() {
         return largeImageURL;
     }
 
-    public void setLargeImageURL (String largeImageURL)
-    {
+    public void setLargeImageURL(String largeImageURL) {
         this.largeImageURL = largeImageURL;
     }
 
-    public String getPageURL ()
-    {
+    public String getPageURL() {
         return pageURL;
     }
 
-    public void setPageURL (String pageURL)
-    {
+    public void setPageURL(String pageURL) {
         this.pageURL = pageURL;
     }
 
-    public String getId ()
-    {
+    public String getId() {
         return id;
     }
 
-    public void setId (String id)
-    {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getImageSize ()
-    {
+    public String getImageSize() {
         return imageSize;
     }
 
-    public void setImageSize (String imageSize)
-    {
+    public void setImageSize(String imageSize) {
         this.imageSize = imageSize;
     }
 
-    public String getWebformatWidth ()
-    {
+    public String getWebformatWidth() {
         return webformatWidth;
     }
 
-    public void setWebformatWidth (String webformatWidth)
-    {
+    public void setWebformatWidth(String webformatWidth) {
         this.webformatWidth = webformatWidth;
     }
 
-    public String getUser ()
-    {
+    public String getUser() {
         return user;
     }
 
-    public void setUser (String user)
-    {
+    public void setUser(String user) {
         this.user = user;
     }
 
-    public String getViews ()
-    {
+    public String getViews() {
         return views;
     }
 
-    public void setViews (String views)
-    {
+    public void setViews(String views) {
         this.views = views;
     }
 
-    public String getLikes ()
-    {
+    public String getLikes() {
         return likes;
     }
 
-    public void setLikes (String likes)
-    {
+    public void setLikes(String likes) {
         this.likes = likes;
     }
 

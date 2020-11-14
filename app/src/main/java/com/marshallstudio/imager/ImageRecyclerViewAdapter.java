@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -20,29 +19,29 @@ import java.util.List;
 
 
 public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecyclerViewAdapter.ViewHolder> {
-    private List<Hits> imageData=new ArrayList<>();
+    private List<Hits> imageData = new ArrayList<>();
     private Context context;
 
     public ImageRecyclerViewAdapter(Context context) {
-        this.context=context;
+        this.context = context;
     }
 
-    public void updateData(List<Hits> data){
-        this.imageData=data;
+    public void updateData(List<Hits> data) {
+        this.imageData = data;
         notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        GridImageBinding gridImageBinding=GridImageBinding.inflate(LayoutInflater.from(parent.getContext()),parent,false);
+        GridImageBinding gridImageBinding = GridImageBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(gridImageBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ViewGroup.LayoutParams params=holder.gridImageBinding.imageView.getLayoutParams();
-        params.height= Integer.parseInt(imageData.get(holder.getAdapterPosition()).getWebformatHeight());
+        ViewGroup.LayoutParams params = holder.gridImageBinding.imageView.getLayoutParams();
+        params.height = Integer.parseInt(imageData.get(holder.getAdapterPosition()).getWebformatHeight());
         holder.gridImageBinding.imageView.setLayoutParams(params);
 
         Glide
@@ -57,8 +56,8 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecycler
         holder.gridImageBinding.imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                NavController navController= Navigation.findNavController(holder.gridImageBinding.getRoot());
-                DisplayImagesFragmentDirections.ActionDisplayImagesFragmentToPreviewImageFragment action=  DisplayImagesFragmentDirections.actionDisplayImagesFragmentToPreviewImageFragment(imageData.get(holder.getAdapterPosition()));
+                NavController navController = Navigation.findNavController(holder.gridImageBinding.getRoot());
+                DisplayImagesFragmentDirections.ActionDisplayImagesFragmentToPreviewImageFragment action = DisplayImagesFragmentDirections.actionDisplayImagesFragmentToPreviewImageFragment(imageData.get(holder.getAdapterPosition()));
                 navController.navigate(action);
             }
         });
@@ -70,11 +69,12 @@ public class ImageRecyclerViewAdapter extends RecyclerView.Adapter<ImageRecycler
         return imageData.size();
     }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         public GridImageBinding gridImageBinding;
+
         public ViewHolder(@NonNull GridImageBinding gridImageBinding) {
             super(gridImageBinding.getRoot());
-            this.gridImageBinding=gridImageBinding;
+            this.gridImageBinding = gridImageBinding;
         }
     }
 }

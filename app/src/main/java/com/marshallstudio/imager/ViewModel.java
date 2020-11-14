@@ -13,20 +13,22 @@ import retrofit2.Response;
 
 public class ViewModel extends androidx.lifecycle.ViewModel {
     private MutableLiveData<List<Hits>> liveImagesData;
+    private MutableLiveData<Boolean> isServerReachable;
+
+    public ViewModel() {
+        liveImagesData = new MutableLiveData<>();
+        isServerReachable = new MutableLiveData<>();
+        isServerReachable.setValue(true);
+    }
 
     public MutableLiveData<Boolean> getLiveDataIsServerReachable() {
         return isServerReachable;
     }
 
-    private MutableLiveData<Boolean> isServerReachable;
-
-    public ViewModel() {
-        liveImagesData =new MutableLiveData<>();
-        isServerReachable=new MutableLiveData<>();
-        isServerReachable.setValue(true);
-    }
-
-    public void getImagesData() {
+    public void getImagesData(boolean isNewSearch) {
+        if (!isNewSearch && liveImagesData.getValue() != null) {
+            return;
+        }
         SearchPreferences searchPreferences = SearchPreferences.getSearchPreferences();
 
         ApiInterface apiInterface = RetrofitClient.getRetrofitClient().create(ApiInterface.class);
@@ -47,7 +49,7 @@ public class ViewModel extends androidx.lifecycle.ViewModel {
         });
     }
 
-    public MutableLiveData<List<Hits>> getLiveData(){
+    public MutableLiveData<List<Hits>> getLiveData() {
         return liveImagesData;
     }
 }

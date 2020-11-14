@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 
 import androidx.fragment.app.Fragment;
 
@@ -18,9 +19,17 @@ public class OptionsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         mBinding = FragmentOptionsBinding.inflate(inflater, container, false);
+        setSpinnerAdapters();
         setOnItemSelectedListeners();
         setOnSwitchStateChangeListeners();
         return mBinding.getRoot();
+    }
+
+    private void setSpinnerAdapters() {
+        mBinding.spinnerCategories.setAdapter(new ArrayAdapter<String>(requireContext(), R.layout.spinner_list_item, getResources().getStringArray(R.array.categories)));
+        mBinding.spinnerImageTypes.setAdapter(new ArrayAdapter<String>(requireContext(), R.layout.spinner_list_item, getResources().getStringArray(R.array.image_types)));
+        mBinding.spinnerOrders.setAdapter(new ArrayAdapter<String>(requireContext(), R.layout.spinner_list_item, getResources().getStringArray(R.array.orders)));
+        mBinding.spinnerOrientations.setAdapter(new ArrayAdapter<String>(requireContext(), R.layout.spinner_list_item, getResources().getStringArray(R.array.orientations)));
     }
 
     private void setOnSwitchStateChangeListeners() {

@@ -1,42 +1,33 @@
 package com.marshallstudio.imager;
 
-import java.util.Arrays;
-
-public class ImageData
-{
+public class ImageData {
     private Hits[] hits;
 
     private String total;
 
     private String totalHits;
 
-    public Hits[] getHits ()
-    {
+    public Hits[] getHits() {
         return hits;
     }
 
-    public void setHits (Hits[] hits)
-    {
+    public void setHits(Hits[] hits) {
         this.hits = hits;
     }
 
-    public String getTotal ()
-    {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal (String total)
-    {
+    public void setTotal(String total) {
         this.total = total;
     }
 
-    public String getTotalHits ()
-    {
+    public String getTotalHits() {
         return totalHits;
     }
 
-    public void setTotalHits (String totalHits)
-    {
+    public void setTotalHits(String totalHits) {
         this.totalHits = totalHits;
     }
 

@@ -13,6 +13,8 @@
     <string name="order">Order</string>
     <string name="editors_choice">Editors Choice</string>
     <string name="safe_search">Safe Search</string>
+    <string name="an_image">An image</string>
+    <string name="download">Download</string>
 
     <string-array name="image_sources">
         <item>Pixabay</item>
