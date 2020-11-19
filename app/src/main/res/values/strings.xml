@@ -15,6 +15,8 @@
     <string name="safe_search">Safe Search</string>
     <string name="an_image">An image</string>
     <string name="download">Download</string>
+    <string name="Already_Downloaded">Already Downloaded</string>
+    <string name="downloaded">Downloaded</string>
 
     <string-array name="image_sources">
         <item>Pixabay</item>
